@@ -229,6 +229,8 @@ class LRMInferrer:
             # save ply format mesh
             mesh.export(os.path.join(dump_path, f'{uid}.ply'), 'ply')
 
+        return os.path.join(dump_path, f'{uid}.mov')
+
 
 if __name__ == '__main__':
 
