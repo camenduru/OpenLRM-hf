@@ -47,8 +47,8 @@ def demo_image_to_video(inferrer: LRMInferrer):
         submit.click(
             fn=inferrer.infer,
             inputs={
-                source_image=input_image,
-                export_video=True,
+                source_image: input_image,
+                export_video: True,
             }, 
             outputs=[gen_video]
             )
