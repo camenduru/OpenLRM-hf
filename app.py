@@ -47,13 +47,35 @@ def demo_image_to_video(inferrer: LRMInferrer):
                             submit = gr.Button('Generate', elem_id="sadtalker_generate", variant='primary')
 
                 with gr.Tabs(elem_id="openlrm_render_video"):
-                    gen_video = gr.Video(label="Rendered Video", format="mov", width=512)
+                    output_video = gr.Video(label="Rendered Video", format="mov", width=512)
 
         submit.click(
             fn=infer_wrapper,
             inputs=[input_image],
-            outputs=[gen_video],
+            outputs=[output_video],
         )
+
+        with gr.Row():
+            examples = [
+                ['assets/sample_input/owl.png'],
+                ['assets/sample_input/building.png'],
+                ['assets/sample_input/mailbox.png'],
+                ['assets/sample_input/fire.png'],
+                ['assets/sample_input/girl.png'],
+                ['assets/sample_input/lamp.png'],
+                ['assets/sample_input/hydrant.png'],
+                ['assets/sample_input/hotdogs.png'],
+                ['assets/sample_input/traffic.png'],
+                ['assets/sample_input/ceramic.png'],
+            ]
+            gr.Examples(
+                examples=examples,
+                inputs=[input_image], 
+                outputs=[output_video],
+                fn=infer_wrapper,
+                cache_examples=os.getenv('SYSTEM') == 'spaces',
+            )
+            
     return iface
 
 if __name__ == "__main__":
