@@ -9,15 +9,14 @@ def prepare_checkpoint(model_name: str):
 
     REPO_ID = f"zxhezexin/OpenLRM"
     FILE_NAME = f"{model_name}.pth"
-    REVISION = f"main"
-    CACHE_PATH = f".cache"
+    # CACHE_PATH = f".cache"
 
     print(f"Downloading ckpt ...")
 
-    ckpt_path = hf_hub_download(repo_id=REPO_ID, filename=FILE_NAME, revision=REVISION)
+    ckpt_path = hf_hub_download(repo_id=REPO_ID, filename=FILE_NAME, local_dir=".cache")
     print(f"checkpoint path is {ckpt_path}")
-    os.makedirs(CACHE_PATH, exist_ok=True)
-    shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
+    # os.makedirs(CACHE_PATH, exist_ok=True)
+    # shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
     os.system(f"ls ./.cache")
 
     print(f"Downloaded ckpt into {CACHE_PATH}")
