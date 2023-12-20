@@ -1,6 +1,4 @@
 import gradio as gr
-import os
-import shutil
 from huggingface_hub import hf_hub_download
 
 from lrm.inferrer import LRMInferrer
@@ -15,9 +13,6 @@ def prepare_checkpoint(model_name: str):
 
     ckpt_path = hf_hub_download(repo_id=REPO_ID, filename=FILE_NAME, local_dir=CACHE_PATH)
     print(f"checkpoint path is {ckpt_path}")
-    # os.makedirs(CACHE_PATH, exist_ok=True)
-    # shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
-    # os.system(f"ls ./.cache")
 
     print(f"Downloaded ckpt into {CACHE_PATH}")
 
@@ -47,8 +42,8 @@ def demo_image_to_video(inferrer: LRMInferrer):
         submit.click(
             fn=inferrer.infer,
             inputs={
-                source_image: input_image,
-                export_video: True,
+                "source_image": input_image,
+                "export_video": True,
             }, 
             outputs=[gen_video]
             )
