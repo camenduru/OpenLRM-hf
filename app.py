@@ -23,15 +23,15 @@ def prepare_checkpoint(model_name: str):
 
 def demo_image_to_video(inferrer: LRMInferrer):
 
+    print(f"So far so good.")
     return "Hello " + name + "!!"
 
 if __name__ == "__main__":
 
     model_name = "lrm-base-obj-v1"
 
-    prepare_checkpoint
+    prepare_checkpoint(model_name)
 
     with LRMInferrer(model_name) as inferrer:
         iface = demo_image_to_video(inferrer)
-        iface = gr.Interface(fn=greet, inputs="text", outputs="text")
         iface.launch()
