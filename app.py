@@ -19,7 +19,7 @@ def prepare_checkpoint(model_name: str):
     # shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
     os.system(f"ls ./.cache")
 
-    print(f"Downloaded ckpt into {CACHE_PATH}")
+    # print(f"Downloaded ckpt into {CACHE_PATH}")
 
 
 def demo_image_to_video(inferrer: LRMInferrer):
