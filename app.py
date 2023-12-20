@@ -28,7 +28,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
     print(inferrer)
 
     with gr.Blocks(analytics_enabled=False) as iface:
-        with gr.Row().style(equal_height=False):
+        with gr.Row():
 
             with gr.Column(variant='panel'):
                 with gr.Tabs(elem_id="openlrm_input_image"):
