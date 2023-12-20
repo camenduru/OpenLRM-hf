@@ -18,6 +18,7 @@ def prepare_checkpoint(model_name: str):
     print(f"checkpoint path is {ckpt_path}")
     os.makedirs(CACHE_PATH, exist_ok=True)
     shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
+    os.system(f"ls ./.cache")
 
     print(f"Downloaded ckpt into {CACHE_PATH}")
 
