@@ -17,7 +17,15 @@ def prepare_checkpoint(model_name: str):
     print(f"Downloaded ckpt into {CACHE_PATH}")
 
 def infer_wrapper(source_image):
-    return inferrer.infer(source_image=source_image, export_video=True)
+    return inferrer.infer(
+        source_image=source_image,
+        dump_path="./dumps",
+        source_size=-1,
+        render_size=-1,
+        mesh_size=384,
+        export_video=True,
+        export_mesh=False,
+    )
 
 def demo_image_to_video(inferrer: LRMInferrer):
 
