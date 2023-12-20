@@ -34,7 +34,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 with gr.Tabs(elem_id="openlrm_input_image"):
                     with gr.TabItem('Input Image'):
                         with gr.Row():
-                            input_image = gr.Image(label="Input Image", type="file", elem_id="content_image").style(width=512)
+                            input_image = gr.Image(label="Input Image", sources="upload", type="filepath", elem_id="content_image").style(width=512)
 
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
