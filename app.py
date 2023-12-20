@@ -15,6 +15,7 @@ def prepare_checkpoint(model_name: str):
     print(f"Downloading ckpt ...")
 
     ckpt_path = hf_hub_download(repo_id=REPO_ID, filename=FILE_NAME, revision=REVISION)
+    print(f"checkpoint path is {ckpt_path}")
     os.makedirs(CACHE_PATH, exist_ok=True)
     shutil.move(ckpt_path, os.path.join(CACHE_PATH, f"{FILE_NAME}"))
 
