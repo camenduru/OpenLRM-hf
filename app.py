@@ -16,6 +16,8 @@ def prepare_checkpoint(model_name: str):
 
     print(f"Downloaded ckpt into {CACHE_PATH}")
 
+def infer_wrapper(source_image):
+    return inferrer.infer(source_image=source_image, export_video=True)
 
 def demo_image_to_video(inferrer: LRMInferrer):
 
@@ -40,13 +42,10 @@ def demo_image_to_video(inferrer: LRMInferrer):
                     gen_video = gr.Video(label="Rendered Video", format="mov", width=512)
 
         submit.click(
-            fn=inferrer.infer,
-            inputs={
-                "source_image": input_image,
-                "export_video": True,
-            }, 
-            outputs=[gen_video]
-            )
+            fn=infer_wrapper,
+            inputs=[input_image],
+            outputs=[gen_video],
+        )
     return iface
 
 if __name__ == "__main__":
