@@ -3,6 +3,7 @@ transformers
 opencv-python
 matplotlib
 torchvision==0.16.0
+rembg
 omegaconf
 pillow
 imageio[ffmpeg]
