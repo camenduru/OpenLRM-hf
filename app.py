@@ -161,4 +161,4 @@ if __name__ == "__main__":
     with LRMInferrer(model_name) as inferrer:
         iface = demo_image_to_video(inferrer)
         iface.queue(max_size=10)
-        iface.launch()
+        iface.launch(share=True)
