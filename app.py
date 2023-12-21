@@ -102,11 +102,12 @@ def demo_image_to_video(inferrer: LRMInferrer):
                         with gr.Column(variant='panel'):
                             gr.Markdown(
                                 """
-                                Please select the checkbox if uploading RGBA images.
+                                Please check the box when uploading RGBA images.
+                                Best practice: RGB images with a white background.
                                 """
                             )
                             checkbox_rembg = gr.Checkbox(False,
-                                             label='Remove background (It takes extra seconds)')
+                                             label='Remove Background (It takes some extra time)')
                             submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
 
         submit.click(
@@ -132,6 +133,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 ['assets/sample_input/hotdogs.png'],
                 ['assets/sample_input/traffic.png'],
                 ['assets/sample_input/ceramic.png'],
+                ['assets/sample_input/cartoon.png'],
             ]
             gr.Examples(
                 examples=examples,
