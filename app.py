@@ -65,12 +65,13 @@ def demo_image_to_video(inferrer: LRMInferrer):
     with gr.Blocks(analytics_enabled=False) as iface:
         with gr.Row():
 
-            with gr.Column(variant='panel'):
+            with gr.Column(variant='panel', scale=2):
                 with gr.Tabs(elem_id="openlrm_input_image"):
                     with gr.TabItem('Input Image'):
                         with gr.Row():
                             input_image = gr.Image(label="Input Image", image_mode="RGBA", sources="upload", type="filepath", elem_id="content_image", width="40%")
 
+            with gr.Column(variant='panel', scale=1):
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
@@ -78,7 +79,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                                              label='Remove background automatically')
                             submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
 
-            with gr.Column(variant='panel'):
+            with gr.Column(variant='panel', scale=2):
                 with gr.Tabs(elem_id="openlrm_render_video"):
                     with gr.TabItem('Rendered Video'):
                         with gr.Row():
@@ -98,14 +99,14 @@ def demo_image_to_video(inferrer: LRMInferrer):
             examples = [
                 ['assets/sample_input/owl.png'],
                 ['assets/sample_input/building.png'],
-                ['assets/sample_input/mailbox.png'],
-                ['assets/sample_input/fire.png'],
-                ['assets/sample_input/girl.png'],
-                ['assets/sample_input/lamp.png'],
-                ['assets/sample_input/hydrant.png'],
-                ['assets/sample_input/hotdogs.png'],
-                ['assets/sample_input/traffic.png'],
-                ['assets/sample_input/ceramic.png'],
+                # ['assets/sample_input/mailbox.png'],
+                # ['assets/sample_input/fire.png'],
+                # ['assets/sample_input/girl.png'],
+                # ['assets/sample_input/lamp.png'],
+                # ['assets/sample_input/hydrant.png'],
+                # ['assets/sample_input/hotdogs.png'],
+                # ['assets/sample_input/traffic.png'],
+                # ['assets/sample_input/ceramic.png'],
             ]
             gr.Examples(
                 examples=examples,
