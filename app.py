@@ -49,7 +49,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
 
             with gr.Column(variant='panel'):
                 with gr.Tabs(elem_id="openlrm_render_video"):
-                    output_video = gr.Video(label="Rendered Video", format="mov", width="40%")
+                    output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
 
         submit.click(
             fn=infer_wrapper,
