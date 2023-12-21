@@ -30,8 +30,9 @@ def rembg_and_center_wrapper(source_image):
     new_image_path = os.path.join(directory, new_filename)
     return new_image_path
 
-def infer_wrapper(source_image):
-    source_image = rembg_and_center_wrapper(source_image)
+def infer_wrapper(source_image, checkbox_rembg):
+    if checkbox_rembg:
+        source_image = rembg_and_center_wrapper(source_image)
     return inferrer.infer(
         source_image=source_image,
         dump_path="./dumps",
@@ -59,11 +60,14 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
-                            submit = gr.Button('Generate', elem_id="sadtalker_generate", variant='primary')
+                            checkbox_rembg = gr.Checkbox(False,
+                                             label='Remove background automatically')
+                            submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
 
             with gr.Column(variant='panel'):
                 with gr.Tabs(elem_id="openlrm_render_video"):
-                    output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
+                    with gr.TabItem('Rendered Video'):
+                        output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
 
         submit.click(
             fn=assert_input_image,
@@ -71,13 +75,13 @@ def demo_image_to_video(inferrer: LRMInferrer):
             queue=False
         ).success(
             fn=infer_wrapper,
-            inputs=[input_image],
+            inputs=[input_image, checkbox_rembg],
             outputs=[output_video],
         )
 
         with gr.Row():
             examples = [
-                ['assets/sample_input/owl.png'],
+                ['assets/sample_input/owl.png', False],
                 # ['assets/sample_input/building.png'],
                 # ['assets/sample_input/mailbox.png'],
                 # ['assets/sample_input/fire.png'],
