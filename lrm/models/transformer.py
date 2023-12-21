@@ -74,9 +74,9 @@ class ConditionModulationBlock(nn.Module):
         # x: [N, L, D]
         # cond: [N, L_cond, D_cond]
         # mod: [N, D_mod]
-        x = x + self.cross_attn(self.norm1(x, mod), cond, cond)[0]
+        x = x + self.cross_attn(self.norm1(x, mod), cond, cond, need_weights=False)[0]
         before_sa = self.norm2(x, mod)
-        x = x + self.self_attn(before_sa, before_sa, before_sa)[0]
+        x = x + self.self_attn(before_sa, before_sa, before_sa, need_weights=False)[0]
         x = x + self.mlp(self.norm3(x, mod))
         return x
 
