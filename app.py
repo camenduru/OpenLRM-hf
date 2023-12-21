@@ -104,7 +104,10 @@ def demo_image_to_video(inferrer: LRMInferrer):
                                 """
                                 Please check the box when uploading RGBA images.
                                 
-                                Best practice: RGB images with a white background.
+                                <strong>Best Practice</strong>:
+                                    - RGB images with a white background.
+                                    - Centered objects in reasonable sizes.
+                                
                                 """
                             )
                             checkbox_rembg = gr.Checkbox(False,
