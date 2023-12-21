@@ -60,13 +60,9 @@ def demo_image_to_video(inferrer: LRMInferrer):
         </div>
         OpenLRM is an open-source implementation of Large Reconstruction Models.
 
-        <strong>Image-to-3D generation in 10+ seconds! </strong>
+        <strong>Image-to-3D in 10+ seconds! </strong>
 
         <strong>Disclaimer:</strong> This demo uses `lrm-base-obj-v1` model trained on Objaverse only, which consists of synthetic data. Its performance may decrease on in-the-wild images. We use 194x194 rendering resolution here for a quick demonstration.
-    '''
-
-    _DUPLICATE ='''
-        [![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/resolve/main/duplicate-this-space-md.svg)](https://huggingface.co/spaces/zxhezexin/OpenLRM?duplicate=true)
     '''
 
     with gr.Blocks(analytics_enabled=False) as iface:
@@ -75,8 +71,6 @@ def demo_image_to_video(inferrer: LRMInferrer):
         with gr.Row():
             with gr.Column(scale=1):
                 gr.Markdown('# ' + _TITLE)
-            with gr.Column(scale=0):
-                gr.Markdown(_DUPLICATE)
         gr.Markdown(_DESCRIPTION)
 
         # DISPLAY
@@ -103,9 +97,10 @@ def demo_image_to_video(inferrer: LRMInferrer):
                             gr.Markdown(
                                 """
                                 Please check the box when uploading RGBA images.
+                                
                                 <strong>Best Practice</strong>:
-                                    - RGB images with a white background.
-                                    - Centered objects in reasonable sizes.
+                                    RGB images with a white background.
+                                    Centered objects in reasonable sizes.
                                 """
                             )
                             checkbox_rembg = gr.Checkbox(False,
