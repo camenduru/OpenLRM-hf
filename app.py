@@ -67,7 +67,8 @@ def demo_image_to_video(inferrer: LRMInferrer):
             with gr.Column(variant='panel'):
                 with gr.Tabs(elem_id="openlrm_render_video"):
                     with gr.TabItem('Rendered Video'):
-                        output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
+                        with gr.Row():
+                            output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
 
         submit.click(
             fn=assert_input_image,
@@ -82,19 +83,19 @@ def demo_image_to_video(inferrer: LRMInferrer):
         with gr.Row():
             examples = [
                 ['assets/sample_input/owl.png', False],
-                # ['assets/sample_input/building.png'],
-                # ['assets/sample_input/mailbox.png'],
-                # ['assets/sample_input/fire.png'],
-                # ['assets/sample_input/girl.png'],
-                # ['assets/sample_input/lamp.png'],
-                # ['assets/sample_input/hydrant.png'],
-                # ['assets/sample_input/hotdogs.png'],
-                # ['assets/sample_input/traffic.png'],
-                # ['assets/sample_input/ceramic.png'],
+                ['assets/sample_input/building.png', False],
+                ['assets/sample_input/mailbox.png', False],
+                ['assets/sample_input/fire.png', False],
+                ['assets/sample_input/girl.png', False],
+                ['assets/sample_input/lamp.png', False],
+                ['assets/sample_input/hydrant.png', False],
+                ['assets/sample_input/hotdogs.png', False],
+                ['assets/sample_input/traffic.png', False],
+                ['assets/sample_input/ceramic.png', False],
             ]
             gr.Examples(
                 examples=examples,
-                inputs=[input_image], 
+                inputs=[input_image, checkbox_rembg], 
                 outputs=[output_video],
                 fn=infer_wrapper,
                 cache_examples=os.getenv('SYSTEM') == 'spaces',
@@ -111,4 +112,4 @@ if __name__ == "__main__":
     with LRMInferrer(model_name) as inferrer:
         iface = demo_image_to_video(inferrer)
         iface.queue(max_size=10)
-        iface.launch(debug=True)
+        iface.launch()
