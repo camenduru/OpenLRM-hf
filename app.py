@@ -40,15 +40,16 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 with gr.Tabs(elem_id="openlrm_input_image"):
                     with gr.TabItem('Input Image'):
                         with gr.Row():
-                            input_image = gr.Image(label="Input Image", sources="upload", type="filepath", elem_id="content_image", width=512)
+                            input_image = gr.Image(label="Input Image", sources="upload", type="filepath", elem_id="content_image", width="40%")
 
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
                             submit = gr.Button('Generate', elem_id="sadtalker_generate", variant='primary')
 
+            with gr.Column(variant='panel'):
                 with gr.Tabs(elem_id="openlrm_render_video"):
-                    output_video = gr.Video(label="Rendered Video", format="mov", width=512)
+                    output_video = gr.Video(label="Rendered Video", format="mov", width="40%")
 
         submit.click(
             fn=infer_wrapper,
