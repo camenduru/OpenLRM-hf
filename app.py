@@ -57,9 +57,12 @@ def demo_image_to_video(inferrer: LRMInferrer):
         <div>
             <a style="display:inline-block; href='https://github.com/3DTopia/OpenLRM'><img src='https://img.shields.io/github/stars/3DTopia/OpenLRM?style=social'/></a>
             <a style="display:inline-block; margin-left: .5em" href="https://huggingface.co/zxhezexin/OpenLRM"><img src='https://img.shields.io/badge/Model-Weights-blue'/></a>
-            <a style="display:inline-block; margin-left: .5em" href="https://arxiv.org/abs/2311.04400"><img src="https://img.shields.io/badge/2311.04400-f9f7f7?logo=data:image/png;base64"></a>
         </div>
         OpenLRM is an open-source implementation of Large Reconstruction Models.
+
+        <strong>Image-to-3D generation in ~10 seconds! </strong>
+
+        <strong>Disclaimer:</strong> This demo uses `lrm-base-obj-v1` model trained on Objaverse only, which consists of synthetic data. Its performance may decrease on in-the-wild images. We use 194x194 rendering resolution here for demonstration.
     '''
 
     _DUPLICATE ='''
@@ -98,7 +101,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
                             checkbox_rembg = gr.Checkbox(False,
-                                             label='Remove background automatically')
+                                             label='Remove background (It takes extra seconds)')
                             submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
 
         submit.click(
@@ -116,14 +119,14 @@ def demo_image_to_video(inferrer: LRMInferrer):
             examples = [
                 ['assets/sample_input/owl.png'],
                 ['assets/sample_input/building.png'],
-                # ['assets/sample_input/mailbox.png'],
-                # ['assets/sample_input/fire.png'],
-                # ['assets/sample_input/girl.png'],
-                # ['assets/sample_input/lamp.png'],
-                # ['assets/sample_input/hydrant.png'],
-                # ['assets/sample_input/hotdogs.png'],
-                # ['assets/sample_input/traffic.png'],
-                # ['assets/sample_input/ceramic.png'],
+                ['assets/sample_input/mailbox.png'],
+                ['assets/sample_input/fire.png'],
+                ['assets/sample_input/girl.png'],
+                ['assets/sample_input/lamp.png'],
+                ['assets/sample_input/hydrant.png'],
+                ['assets/sample_input/hotdogs.png'],
+                ['assets/sample_input/traffic.png'],
+                ['assets/sample_input/ceramic.png'],
             ]
             gr.Examples(
                 examples=examples,
