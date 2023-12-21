@@ -193,9 +193,11 @@ class LRMInferrer:
 
         image = torch.tensor(np.array(Image.open(source_image))).permute(2, 0, 1).unsqueeze(0) / 255.0
         # if RGBA, blend to RGB
+        print(f"[DEBUG] check 1.")
         if image.shape[1] == 4:
             image = image[:, :3, ...] * image[:, 3:, ...] + (1 - image[:, 3:, ...])
             print(f"[DEBUG] image.shape={image.shape} and image[0,0,0,0]={image[0,0,0,0]}")
+        print(f"[DEBUG] check 2.")
         image = torch.nn.functional.interpolate(image, size=(source_image_size, source_image_size), mode='bicubic', align_corners=True)
         image = torch.clamp(image, 0, 1)
         results = self.infer_single(
