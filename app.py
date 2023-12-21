@@ -68,8 +68,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
         submit.click(
             fn=assert_input_image,
             queue=False
-        )
-        .success(
+        ).success(
             fn=infer_wrapper,
             inputs=[input_image],
             outputs=[output_video],
