@@ -103,6 +103,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                             gr.Markdown(
                                 """
                                 Please check the box when uploading RGBA images.
+                                
                                 Best practice: RGB images with a white background.
                                 """
                             )
