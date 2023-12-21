@@ -100,6 +100,11 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
                         with gr.Column(variant='panel'):
+                            gr.Markdown(
+                                """
+                                Please select the checkbox if uploading RGBA images.
+                                """
+                            )
                             checkbox_rembg = gr.Checkbox(False,
                                              label='Remove background (It takes extra seconds)')
                             submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
