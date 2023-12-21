@@ -60,9 +60,9 @@ def demo_image_to_video(inferrer: LRMInferrer):
         </div>
         OpenLRM is an open-source implementation of Large Reconstruction Models.
 
-        <strong>Image-to-3D generation in ~10 seconds! </strong>
+        <strong>Image-to-3D generation in 10+ seconds! </strong>
 
-        <strong>Disclaimer:</strong> This demo uses `lrm-base-obj-v1` model trained on Objaverse only, which consists of synthetic data. Its performance may decrease on in-the-wild images. We use 194x194 rendering resolution here for demonstration.
+        <strong>Disclaimer:</strong> This demo uses `lrm-base-obj-v1` model trained on Objaverse only, which consists of synthetic data. Its performance may decrease on in-the-wild images. We use 194x194 rendering resolution here for a quick demonstration.
     '''
 
     _DUPLICATE ='''
@@ -103,11 +103,9 @@ def demo_image_to_video(inferrer: LRMInferrer):
                             gr.Markdown(
                                 """
                                 Please check the box when uploading RGBA images.
-                                
                                 <strong>Best Practice</strong>:
                                     - RGB images with a white background.
                                     - Centered objects in reasonable sizes.
-                                
                                 """
                             )
                             checkbox_rembg = gr.Checkbox(False,
