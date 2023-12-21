@@ -62,15 +62,37 @@ def demo_image_to_video(inferrer: LRMInferrer):
         OpenLRM is an open-source implementation of Large Reconstruction Models.
     '''
 
+    _DUPLICATE ='''
+        [![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/resolve/main/duplicate-this-space-md.svg)](https://huggingface.co/spaces/zxhezexin/OpenLRM?duplicate=true)
+    '''
+
     with gr.Blocks(analytics_enabled=False) as iface:
+
+        # HEADERS
+        with gr.Row():
+            with gr.Column(scale=1):
+                gr.Markdown('# ' + _TITLE)
+            with gr.Column(scale=0):
+                gr.Markdown(_DUPLICATE)
+        gr.Markdown(_DESCRIPTION)
+
+        # DISPLAY
         with gr.Row():
 
-            with gr.Column(variant='panel', scale=2):
+            with gr.Column(variant='panel', scale=1):
                 with gr.Tabs(elem_id="openlrm_input_image"):
                     with gr.TabItem('Input Image'):
                         with gr.Row():
-                            input_image = gr.Image(label="Input Image", image_mode="RGBA", sources="upload", type="filepath", elem_id="content_image", width="40%")
+                            input_image = gr.Image(label="Input Image", image_mode="RGBA", sources="upload", type="filepath", elem_id="content_image", width="auto")
 
+            with gr.Column(variant='panel', scale=1):
+                with gr.Tabs(elem_id="openlrm_render_video"):
+                    with gr.TabItem('Rendered Video'):
+                        with gr.Row():
+                            output_video = gr.Video(label="Rendered Video", format="mp4", width="auto")
+
+        # SETTING
+        with gr.Row():
             with gr.Column(variant='panel', scale=1):
                 with gr.Tabs(elem_id="openlrm_attrs"):
                     with gr.TabItem('Settings'):
@@ -78,12 +100,6 @@ def demo_image_to_video(inferrer: LRMInferrer):
                             checkbox_rembg = gr.Checkbox(False,
                                              label='Remove background automatically')
                             submit = gr.Button('Generate', elem_id="openlrm_generate", variant='primary')
-
-            with gr.Column(variant='panel', scale=2):
-                with gr.Tabs(elem_id="openlrm_render_video"):
-                    with gr.TabItem('Rendered Video'):
-                        with gr.Row():
-                            output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
 
         submit.click(
             fn=assert_input_image,
@@ -95,6 +111,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
             outputs=[output_video],
         )
 
+        # EXAMPLES
         with gr.Row():
             examples = [
                 ['assets/sample_input/owl.png'],
