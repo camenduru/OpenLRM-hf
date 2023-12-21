@@ -62,7 +62,7 @@ class LRMInferrer:
         return model
 
     @staticmethod
-    def _get_surrounding_views(M: int = 160, radius: float = 2.0, height: float = 0.8):
+    def _get_surrounding_views(M: int = 80, radius: float = 2.0, height: float = 0.8):
         # M: number of surrounding views
         # radius: camera dist to center
         # height: height of the camera
@@ -127,7 +127,8 @@ class LRMInferrer:
             assert frame.min() >= 0 and frame.max() <= 255, \
                 f"Frame value out of range: {frame.min()} ~ {frame.max()}"
             frames.append(frame)
-        imageio.mimwrite(output_path, np.stack(frames), fps=fps, codec='mpeg4', quality=10)
+        # imageio.mimwrite(output_path, np.stack(frames), fps=fps, codec='mpeg4', quality=10)
+        imageio.mimwrite(output_path, np.stack(frames), fps=fps, quality=10)
         if verbose:
             print(f"Saved video to {output_path}")
 
@@ -216,8 +217,8 @@ class LRMInferrer:
                 if k == 'images_rgb':
                     self.images_to_video(
                         v[0],
-                        os.path.join(dump_path, f'{uid}.mov'),
-                        fps=40,
+                        os.path.join(dump_path, f'{uid}.mp4'),
+                        fps=20,
                     )
                 else:
                     # torch.save(v[0], os.path.join(dump_path, f'{uid}_{k}.pth'))
@@ -229,7 +230,7 @@ class LRMInferrer:
             # save ply format mesh
             mesh.export(os.path.join(dump_path, f'{uid}.ply'), 'ply')
 
-        return os.path.join(dump_path, f'{uid}.mov')
+        return os.path.join(dump_path, f'{uid}.mp4')
 
 
 if __name__ == '__main__':
