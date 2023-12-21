@@ -1,5 +1,6 @@
 import gradio as gr
 import os
+import uuid
 import subprocess
 from huggingface_hub import hf_hub_download
 
@@ -32,6 +33,13 @@ def rembg_and_center_wrapper(source_image):
     return new_image_path
 
 def infer_wrapper(source_image, checkbox_rembg):
+
+    random_uuid = str(uuid.uuid4())
+    directory, extension = os.path.split(source_image)
+    file_extension = os.path.splitext(extension)[1]
+    new_file_path = os.path.join(directory, random_uuid + file_extension)
+    source_image = new_file_path
+
     if checkbox_rembg:
         source_image = rembg_and_center_wrapper(source_image)
     return inferrer.infer(
@@ -61,7 +69,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
         </div>
         OpenLRM is an open-source implementation of Large Reconstruction Models.
 
-        <strong>Image-to-3D in 10+ seconds! </strong>
+        <strong>Image-to-3D in 10 seconds!</strong>
 
         <strong>Disclaimer:</strong> This demo uses `lrm-base-obj-v1` model trained on Objaverse only, which consists of synthetic data. Its performance may decrease on in-the-wild images. We use 194x194 rendering resolution here for a quick demonstration.
     '''
