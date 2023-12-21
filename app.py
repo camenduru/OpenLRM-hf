@@ -81,13 +81,13 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 with gr.Tabs(elem_id="openlrm_input_image"):
                     with gr.TabItem('Input Image'):
                         with gr.Row():
-                            input_image = gr.Image(label="Input Image", image_mode="RGB", sources="upload", type="filepath", elem_id="content_image", width="50%")
+                            input_image = gr.Image(label="Input Image", image_mode="RGB", sources="upload", type="filepath", elem_id="content_image", width="512")
 
             with gr.Column(variant='panel', scale=1):
                 with gr.Tabs(elem_id="openlrm_render_video"):
                     with gr.TabItem('Rendered Video'):
                         with gr.Row():
-                            output_video = gr.Video(label="Rendered Video", format="mp4", width="50%", autoplay=True)
+                            output_video = gr.Video(label="Rendered Video", format="mp4", width="256", autoplay=True)
 
         # SETTING
         with gr.Row():
