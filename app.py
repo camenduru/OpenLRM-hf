@@ -24,8 +24,9 @@ def assert_input_image(input_image):
 
 def rembg_and_center_wrapper(source_image):
     subprocess.run([f'python rembg_and_center.py {source_image}'], shell=True)
-    directory, filename = os.path.split(source_image)
-    file_base, file_extension = os.path.splitext(filename)
+    # directory, filename = os.path.split(source_image)
+    # file_base, file_extension = os.path.splitext(filename)
+    file_base = os.path.basename(source_image).split('.')[0]
     new_filename = f"{file_base}_rgba.png"
     new_image_path = os.path.join(directory, new_filename)
     return new_image_path
