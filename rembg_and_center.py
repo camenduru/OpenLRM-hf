@@ -44,6 +44,9 @@ if __name__ == '__main__':
         # load image
         print(f'[INFO] loading image {file}...')
         image = cv2.imread(file, cv2.IMREAD_UNCHANGED)
+        scale = desired_size / max(h, w)
+        _h, _w = int(h_ * scale), int(w_ * scale)
+        image = cv2.resize(image, (w_, h_), interpolation=cv2.INTER_AREA)
         
         # carve background
         print(f'[INFO] background removal...')
