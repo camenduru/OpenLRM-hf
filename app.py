@@ -34,11 +34,11 @@ def rembg_and_center_wrapper(source_image):
 
 def infer_wrapper(source_image, checkbox_rembg):
 
-    random_uuid = str(uuid.uuid4())
-    directory, extension = os.path.split(source_image)
-    file_extension = os.path.splitext(extension)[1]
-    new_file_path = os.path.join(directory, random_uuid + file_extension)
-    source_image = new_file_path
+    # random_uuid = str(uuid.uuid4())
+    # directory, extension = os.path.split(source_image)
+    # file_extension = os.path.splitext(extension)[1]
+    # new_file_path = os.path.join(directory, random_uuid + file_extension)
+    # source_image = new_file_path
 
     if checkbox_rembg:
         source_image = rembg_and_center_wrapper(source_image)
