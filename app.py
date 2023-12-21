@@ -1,5 +1,6 @@
 import gradio as gr
 import os
+import subprocess
 from huggingface_hub import hf_hub_download
 
 from lrm.inferrer import LRMInferrer
@@ -17,7 +18,20 @@ def prepare_checkpoint(model_name: str):
 
     print(f"Downloaded ckpt into {CACHE_PATH}")
 
+def assert_input_image(input_image):
+    if input_image is None:
+        raise gr.Error("No image selected or uploaded!")
+
+def rembg_and_center_wrapper(source_image):
+    subprocess.run([f'python rembg_and_center.py {source_image}'], shell=True)
+    directory, filename = os.path.split(source_image)
+    file_base, file_extension = os.path.splitext(filename)
+    new_filename = f"{file_base}_rgba.png"
+    new_image_path = os.path.join(directory, new_filename)
+    return new_image_path
+
 def infer_wrapper(source_image):
+    source_image = rembg_and_center_wrapper(source_image)
     return inferrer.infer(
         source_image=source_image,
         dump_path="./dumps",
@@ -52,6 +66,10 @@ def demo_image_to_video(inferrer: LRMInferrer):
                     output_video = gr.Video(label="Rendered Video", format="mp4", width="80%")
 
         submit.click(
+            fn=assert_input_image,
+            queue=False
+        )
+        .success(
             fn=infer_wrapper,
             inputs=[input_image],
             outputs=[output_video],
