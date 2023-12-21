@@ -1,5 +1,8 @@
 torch>=2.1.0
 transformers
+opencv-python
+matplotlib
+torchvision==0.16.0
 omegaconf
 pillow
 imageio[ffmpeg]
