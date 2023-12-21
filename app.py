@@ -43,10 +43,24 @@ def infer_wrapper(source_image, checkbox_rembg):
         export_mesh=False,
     )
 
+def infer_wrapper_clean(source_image):
+    return infer_wrapper(source_image, checkbox_rembg=False)
+
 def demo_image_to_video(inferrer: LRMInferrer):
 
     print(f"So far so good.")
     print(inferrer)
+
+    _TITLE = '''OpenLRM: Open-Source Large Reconstruction Models'''
+
+    _DESCRIPTION = '''
+        <div>
+            <a style="display:inline-block; href='https://github.com/3DTopia/OpenLRM'><img src='https://img.shields.io/github/stars/3DTopia/OpenLRM?style=social'/></a>
+            <a style="display:inline-block; margin-left: .5em" href="https://huggingface.co/zxhezexin/OpenLRM"><img src='https://img.shields.io/badge/Model-Weights-blue'/></a>
+            <a style="display:inline-block; margin-left: .5em" href="https://arxiv.org/abs/2311.04400"><img src="https://img.shields.io/badge/2311.04400-f9f7f7?logo=data:image/png;base64"></a>
+        </div>
+        OpenLRM is an open-source implementation of Large Reconstruction Models.
+    '''
 
     with gr.Blocks(analytics_enabled=False) as iface:
         with gr.Row():
@@ -82,22 +96,22 @@ def demo_image_to_video(inferrer: LRMInferrer):
 
         with gr.Row():
             examples = [
-                ['assets/sample_input/owl.png', False],
-                ['assets/sample_input/building.png', False],
-                ['assets/sample_input/mailbox.png', False],
-                ['assets/sample_input/fire.png', False],
-                ['assets/sample_input/girl.png', False],
-                ['assets/sample_input/lamp.png', False],
-                ['assets/sample_input/hydrant.png', False],
-                ['assets/sample_input/hotdogs.png', False],
-                ['assets/sample_input/traffic.png', False],
-                ['assets/sample_input/ceramic.png', False],
+                ['assets/sample_input/owl.png'],
+                ['assets/sample_input/building.png'],
+                ['assets/sample_input/mailbox.png'],
+                ['assets/sample_input/fire.png'],
+                ['assets/sample_input/girl.png'],
+                ['assets/sample_input/lamp.png'],
+                ['assets/sample_input/hydrant.png'],
+                ['assets/sample_input/hotdogs.png'],
+                ['assets/sample_input/traffic.png'],
+                ['assets/sample_input/ceramic.png'],
             ]
             gr.Examples(
                 examples=examples,
-                inputs=[input_image, checkbox_rembg], 
+                inputs=[input_image], 
                 outputs=[output_video],
-                fn=infer_wrapper,
+                fn=infer_wrapper_clean,
                 cache_examples=os.getenv('SYSTEM') == 'spaces',
             )
             
