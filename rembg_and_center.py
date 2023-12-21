@@ -21,9 +21,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('path', type=str, help="path to image (png, jpeg, etc.)")
     parser.add_argument('--model', default='u2net', type=str, help="rembg model, see https://github.com/danielgatis/rembg#models")
-    parser.add_argument('--size', default=256, type=int, help="output resolution")
+    parser.add_argument('--size', default=512, type=int, help="output resolution")
     parser.add_argument('--border_ratio', default=0.2, type=float, help="output border ratio")
-    parser.add_argument('--recenter', type=bool, default=True, help="recenter, potentially not helpful for multiview zero123")    
+    parser.add_argument('--recenter', type=bool, default=False, help="recenter, potentially not helpful for multiview zero123")    
     opt = parser.parse_args()
 
     session = rembg.new_session(model_name=opt.model)
