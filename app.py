@@ -141,6 +141,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
                 outputs=[output_video],
                 fn=infer_wrapper_clean,
                 cache_examples=os.getenv('SYSTEM') == 'spaces',
+                examples_per_page=20,
             )
             
     return iface
