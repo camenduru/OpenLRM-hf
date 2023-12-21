@@ -55,7 +55,7 @@ def demo_image_to_video(inferrer: LRMInferrer):
 
     _DESCRIPTION = '''
         <div>
-            <a style="display:inline-block; href='https://github.com/3DTopia/OpenLRM'><img src='https://img.shields.io/github/stars/3DTopia/OpenLRM?style=social'/></a>
+            <a style="display:inline-block" href='https://github.com/3DTopia/OpenLRM'><img src='https://img.shields.io/github/stars/3DTopia/OpenLRM?style=social'/></a>
             <a style="display:inline-block; margin-left: .5em" href="https://huggingface.co/zxhezexin/OpenLRM"><img src='https://img.shields.io/badge/Model-Weights-blue'/></a>
         </div>
         OpenLRM is an open-source implementation of Large Reconstruction Models.
